@@ -1,5 +1,5 @@
 var Common = require('JoystickBar');
- 
+var commonData = require("gameData")
 cc.Class({
     extends: cc.Component,
  
@@ -164,6 +164,8 @@ cc.Class({
     },
  
     _touchStartEvent: function (event) {
+        // cc.director.resume()
+        commonData.curGameState = commonData.GameState.RUNNING
         this.isTouching = true
         // 获取触摸位置的世界坐标转换成圆圈的相对坐标（以圆圈的锚点为基准）
         var touchPos = this.node.convertToNodeSpaceAR(event.getLocation());
@@ -209,5 +211,6 @@ cc.Class({
         this.isTouching = false
         this.dot.setPosition(this.node.getPosition());
         this._speed = 0;
+        // cc.director.pause()
     },
 });

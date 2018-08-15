@@ -7,7 +7,7 @@
 // Learn life-cycle callbacks:
 //  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] http://www.cocos2d-x.org/docs/creator/en/scripting/life-cycle-callbacks.html
-
+var commonData = require("gameData")
 cc.Class({
     extends: cc.Component,
 
@@ -24,7 +24,9 @@ cc.Class({
     },
 
     update (dt) {
-        this.updateRoadPosition(dt)
+      // if(commonData.curGameState == commonData.GameState.RUNNING){
+         this.updateRoadPosition(dt)
+      // }
     },
     updateRoadPosition(dt){
         for(var index = 0; index < this.road.length; index++){
@@ -33,10 +35,10 @@ cc.Class({
            var winSize = cc.director.getWinSize();
 
            if (curPosY > -winSize.height/2){
-                element.y = curPosY - 100 * dt
+                element.y = curPosY - commonData.velocity
            }else{
                 var posY = (index == 0)?this.road[1].y:this.road[0].y
-                var newPosY = posY + element.getContentSize().height - 100 * dt
+                var newPosY = posY + element.getContentSize().height - commonData.velocity
                 element.y = newPosY
            }
        }

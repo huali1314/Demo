@@ -7,11 +7,11 @@
 // Learn life-cycle callbacks:
 //  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] http://www.cocos2d-x.org/docs/creator/en/scripting/life-cycle-callbacks.html
-
+var commonData = require("gameData")
 cc.Class({
     extends: cc.Component,
 
-    properties: {
+    // properties: {
         // foo: {
         //     // ATTRIBUTES:
         //     default: null,        // The default value will be used only when the component attaching
@@ -27,15 +27,29 @@ cc.Class({
         //         this._bar = value;
         //     }
         // },
-    },
+    // },
 
     // LIFE-CYCLE CALLBACKS:
 
     // onLoad () {},
 
     start () {
-
+        this.childs = this.node.children
+        this.maxNum = this.childs.length
+        this.maxGear = (this.maxNum + 1)/2
+        var rand = cc.random0To1() * 1000 % 4 + 1
+        commonData.curBulletGear = Math.floor(rand)
+        this.changeBulletNum()
     },
-
-    // update (dt) {},
+    changeBulletNum:function() {
+        var curGear = commonData.curBulletGear
+        var limitGear = (curGear >= this.maxGear)?this.maxGear:curGear
+        for (var i = 1;i <= this.maxNum;i++ ){
+            if (i <= (1 + (limitGear - 1) * 2)){
+                this.node.getChildByName("normalBullet" + i).active = true
+            }else{
+                 this.node.getChildByName("normalBullet" + i).active = false
+            }
+        }
+    },
 });

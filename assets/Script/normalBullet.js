@@ -7,7 +7,7 @@
 // Learn life-cycle callbacks:
 //  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] http://www.cocos2d-x.org/docs/creator/en/scripting/life-cycle-callbacks.html
-
+var commonData = require("gameData")
 cc.Class({
     extends: cc.Component,
 
@@ -27,17 +27,49 @@ cc.Class({
         //         this._bar = value;
         //     }
         // },
-        velocity:10,
+        velocityX:20,
+        velocityY:30,
     },
 
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {},
+    onLoad () {
+        cc.director.getCollisionManager().enabled = true;
+        // cc.director.getCollisionManager().enabledDebugDraw = true;
+        // cc.director.getCollisionManager().enabledDrawBoundingBox = true;
+        this.winSize = cc.director.getWinSize()
+        this.node.setTag(commonData.TAG.bullet)
+    },
 
     // start () {
     // },
 
     update (dt) {
-        this.node.y += this.velocity
+        var random_R = cc.random0To1() * 100
+        var random_G = cc.random0To1() * 100
+        var random_B = cc.random0To1() * 100
+        this.node.x += this.velocityX
+        this.node.y += this.velocityY
+        if(this.node.y > this.winSize.height){
+            this.node.getParent().destroy()
+        }
+        this.node.color = cc.color(random_R + dt,random_G + dt,random_B + dt)
     },
+    onCollisionEnter: function (other) {
+        this.node.color = cc.Color.RED;
+        // this.touchingNumber ++;
+        // cc.log(this.touchingNumber);
+    },
+
+    onCollisionStay: function (other) {
+        // console.log('on collision stay');
+    },
+
+    onCollisionExit: function () {
+        // this.touchingNumber --;
+        // cc.log(this.touchingNumber);
+        // if (this.touchingNumber === 0) {
+            this.node.color = cc.Color.WHITE;
+        // }
+    }
 });
