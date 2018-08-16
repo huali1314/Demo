@@ -37,8 +37,6 @@ cc.Class({
         this.childs = this.node.children
         this.maxNum = this.childs.length
         this.maxGear = (this.maxNum + 1)/2
-        var rand = cc.random0To1() * 1000 % 4 + 1
-        commonData.curBulletGear = Math.floor(rand)
         this.changeBulletNum()
     },
     changeBulletNum:function() {

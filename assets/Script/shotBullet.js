@@ -31,7 +31,6 @@ cc.Class({
 
     // start () {
     // },
-
     update (dt) {
         this.node.x += this.velocityX
         this.node.y += this.velocityY

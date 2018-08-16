@@ -14,4 +14,5 @@ module.exports = {
     velocity:1,
     monsterProductionRate:0.5,
     buffProductionRate:4,
+    curBulletGear:1,
 };

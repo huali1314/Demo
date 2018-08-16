@@ -1,5 +1,5 @@
 module.exports = {
-    Magazine:cc.Enum({
+    MagazineType:cc.Enum({
         NORMAL:0,//普通子弹
         SHOT:1,//散弹
         LIGHT:2,//激光

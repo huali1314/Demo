@@ -32,12 +32,12 @@ cc.Class({
         cc.director.pause()
     },
 
-    start () {
+    // start () {
         
-    },
+    // },
     update (dt) {
-        var playerInfo = this.player.getComponent("playerBaseInfo")
-        var hp = playerInfo.hp
+        this.playerInfo = this.player.getComponent("playerBaseInfo")
+        var hp = this.playerInfo.hp
         if (hp <= 0){
             this.unRegisterEvent()
             this.pause()
@@ -46,6 +46,7 @@ cc.Class({
     _initTouchEvent: function () {
         var self = this;
         self.node.on(cc.Node.EventType.TOUCH_START, self._touchStartEvent, self);
+        self.node.on(cc.Node.EventType.TOUCH_CANCEL, self._touchCancelEvent, self);
         self.node.on(cc.Node.EventType.TOUCH_END, self._touchEndEvent, self);
     },
      _touchStartEvent: function (event) {
@@ -54,6 +55,10 @@ cc.Class({
     },
     _touchEndEvent: function () {
         this.prompt.active = true
+        this.pause()
+    },
+    _touchCancelEvent:function(){
+         this.prompt.active = true
         this.pause()
     },
     pause(){

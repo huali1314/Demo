@@ -269,7 +269,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "efa628a1-baba-41ab-869c-07470271b687"
+      "__uuid__": "d30a78a6-c8ae-4c98-91b3-714dea1c2079"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -392,8 +392,8 @@
     },
     "_size": {
       "__type__": "cc.Size",
-      "width": 50,
-      "height": 50
+      "width": 80,
+      "height": 80
     }
   },
   {
@@ -431,8 +431,9 @@
     },
     "_enabled": true,
     "hp": 10,
-    "curBulletIdx": 1,
-    "curBulletGear": 3
+    "curBulletType": 0,
+    "curBulletGear": 3,
+    "maxBulletGear": 9
   },
   {
     "__type__": "3cd67aAVQ9JXpeEOjH4iM4B",
@@ -447,7 +448,7 @@
     },
     "bullets": [
       {
-        "__uuid__": "3bd22cda-3036-4a54-95f0-76f56a1c2b72"
+        "__uuid__": "d70f1dd4-057a-4e51-8ac7-04ac0b1e8759"
       },
       {
         "__uuid__": "4dfcf3b1-7fa1-4ac3-bb76-109c7b799336"

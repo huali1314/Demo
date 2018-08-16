@@ -12,23 +12,8 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        // foo: {
-        //     // ATTRIBUTES:
-        //     default: null,        // The default value will be used only when the component attaching
-        //                           // to a node for the first time
-        //     type: cc.SpriteFrame, // optional, default is typeof default
-        //     serializable: true,   // optional, default is true
-        // },
-        // bar: {
-        //     get () {
-        //         return this._bar;
-        //     },
-        //     set (value) {
-        //         this._bar = value;
-        //     }
-        // },
-        velocityX:20,
-        velocityY:30,
+        velocityX:0,
+        velocityY:0,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -41,35 +26,31 @@ cc.Class({
         this.node.setTag(commonData.TAG.bullet)
     },
 
-    // start () {
-    // },
+    start () {
+        this.random_R = cc.random0To1() * 100 + 100
+        this.random_G = cc.random0To1() * 100 + 100
+        this.random_B = cc.random0To1() * 100 + 100
+    },
 
     update (dt) {
-        var random_R = cc.random0To1() * 100
-        var random_G = cc.random0To1() * 100
-        var random_B = cc.random0To1() * 100
         this.node.x += this.velocityX
         this.node.y += this.velocityY
-        if(this.node.y > this.winSize.height){
-            this.node.getParent().destroy()
+        if(this.node.y > this.winSize.height || this.node.y < 0
+            || this.node.x > this.winSize.width ||this.node.x < 0){
+            this.node.destroy()
         }
-        this.node.color = cc.color(random_R + dt,random_G + dt,random_B + dt)
+        var temp = dt * 20
+        this.node.color = cc.color(this.random_R + temp,this.random_G + temp,this.random_B + temp)
     },
     onCollisionEnter: function (other) {
-        this.node.color = cc.Color.RED;
-        // this.touchingNumber ++;
-        // cc.log(this.touchingNumber);
+        this.node.destroy()
     },
 
-    onCollisionStay: function (other) {
-        // console.log('on collision stay');
-    },
+    // onCollisionStay: function (other) {
+        
+    // },
 
-    onCollisionExit: function () {
-        // this.touchingNumber --;
-        // cc.log(this.touchingNumber);
-        // if (this.touchingNumber === 0) {
-            this.node.color = cc.Color.WHITE;
-        // }
-    }
+    // onCollisionExit: function () {
+    //     this.node.color = cc.Color.WHITE;
+    // }
 });

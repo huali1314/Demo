@@ -13,7 +13,8 @@ cc.Class({
 
     properties: {
         hp:10,
-        curBulletIdx:1,
-    	curBulletGear:3,
+        curBulletType:0,
+    	curBulletGear:1,
+    	maxBulletGear:9,
     },
 });

@@ -40,19 +40,30 @@ cc.Class({
         }
     },
     onCollisionEnter: function (other) {
-        var bulletBaseInfo = other.node.getComponent("bulletBaseInfo")
-        if (bulletBaseInfo == null || this.monsterBaseInfo == null || !other.node.isValid){
-            return
+        switch(other.node.tag){
+            case commonData.TAG.player:
+                var boom = cc.instantiate(this.particleBoom)
+                boom.setPosition(this.node.getPosition())
+                this.node.getParent().addChild(boom)
+                this.node.destroy()
+                break
+            case commonData.TAG.bullet:
+                var bulletBaseInfo = other.node.getComponent("bulletBaseInfo")
+                if (bulletBaseInfo == null || this.monsterBaseInfo == null || !other.node.isValid){
+                    return
+                }
+                var damage = bulletBaseInfo.damage
+                var leftHp = this.monsterBaseInfo.hp - damage
+                this.monsterBaseInfo.hp = leftHp > 0?leftHp:0
+                if (this.monsterBaseInfo.hp <= 0){
+                    var boom = cc.instantiate(this.particleBoom)
+                    boom.setPosition(this.node.getPosition())
+                    this.node.getParent().addChild(boom)
+                    this.node.destroy()
+                }
+                commonData.velocity += 0.02
+                break
         }
-        var damage = bulletBaseInfo.damage
-        if (this.monsterBaseInfo.hp <= 0){
-            var boom = cc.instantiate(this.particleBoom)
-            boom.setPosition(this.node.getPosition())
-            this.node.getParent().addChild(boom)
-            this.node.destroy()
-        }else{
-            var leftHp = this.monsterBaseInfo.hp - damage
-            this.monsterBaseInfo.hp = leftHp > 0?leftHp:0
-        }
+        
     },
 });
