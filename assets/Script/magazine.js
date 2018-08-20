@@ -1,10 +1,11 @@
 module.exports = {
     MagazineType:cc.Enum({
         NORMAL:0,//普通子弹
-        SHOT:1,//散弹
-        LIGHT:2,//激光
-        TRACE:3,//追踪弹
-        FIRE:4,//火焰
+        HARD:1,
+        SHOT:2,//散弹
+        LIGHT:3,//激光
+        TRACE:4,//追踪弹
+        FIRE:5,//火焰
     }),
     Damage:{
     	default:[],

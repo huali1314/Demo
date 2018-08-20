@@ -8,6 +8,7 @@
 //  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] http://www.cocos2d-x.org/docs/creator/en/scripting/life-cycle-callbacks.html
 var commonData = require("gameData")
+var magazine = require("magazine")
 cc.Class({
     extends: cc.Component,
 
@@ -30,6 +31,7 @@ cc.Class({
         this.screen_sz = cc.director.getWinSize()
         this.monsterBaseInfo = this.node.getComponent("monsterBaseInfo")
         this.velocity = this.monsterBaseInfo.velocity
+        this.AudioEngine = this.node.getComponent("audioEngineController")
     },
 
     update (dt) {
@@ -40,6 +42,10 @@ cc.Class({
         }
     },
     onCollisionEnter: function (other) {
+        // cc.log("onCollisionEnter===========monster===")
+        if (other && !other.node.isValid){
+            return
+        }
         switch(other.node.tag){
             case commonData.TAG.player:
                 var boom = cc.instantiate(this.particleBoom)
@@ -48,22 +54,60 @@ cc.Class({
                 this.node.destroy()
                 break
             case commonData.TAG.bullet:
-                var bulletBaseInfo = other.node.getComponent("bulletBaseInfo")
-                if (bulletBaseInfo == null || this.monsterBaseInfo == null || !other.node.isValid){
-                    return
-                }
-                var damage = bulletBaseInfo.damage
-                var leftHp = this.monsterBaseInfo.hp - damage
-                this.monsterBaseInfo.hp = leftHp > 0?leftHp:0
-                if (this.monsterBaseInfo.hp <= 0){
-                    var boom = cc.instantiate(this.particleBoom)
-                    boom.setPosition(this.node.getPosition())
-                    this.node.getParent().addChild(boom)
-                    this.node.destroy()
-                }
+                this.updateMonsterHp(other)
                 commonData.velocity += 0.02
                 break
         }
         
     },
+    updateMonsterHp(other){
+        var bulletBaseInfo = other.node.getComponent("bulletBaseInfo")
+        if (bulletBaseInfo == undefined || this.monsterBaseInfo == null || !other.node.isValid){
+            return
+        }
+        var damage = bulletBaseInfo.damage
+        var leftHp = this.monsterBaseInfo.hp - damage
+        this.monsterBaseInfo.hp = leftHp > 0?leftHp:0
+        if (this.monsterBaseInfo.hp <= 0){
+            if(this.AudioEngine){
+                this.AudioEngine.play()
+            }
+            commonData.enemyKilled += 1
+            commonData.damage += this.monsterBaseInfo.maxHp
+            var boom = cc.instantiate(this.particleBoom)
+            boom.setPosition(this.node.getPosition())
+            this.node.getParent().addChild(boom)
+            this.node.destroy()
+        }
+    },
+    // onCollisionStay:function(other){
+    //     cc.log("onCollisionStay===========monster===")
+    //     if (other && !other.node.isValid){
+    //         return
+    //     }
+    //     var tag = other.node.tag
+    //     switch(tag){
+    //         case commonData.TAG.bullet:
+    //             var bulletBaseInfo = other.node.getComponent("bulletBaseInfo")
+    //             if (bulletBaseInfo && bulletBaseInfo.type == magazine.MagazineType.HARD){
+    //                 this.updateMonsterHp(other)
+    //             }
+    //             break
+    //     }
+    // },
+    // onCollisionExit:function(other){
+    //     cc.log("onCollisionStay===========monster===")
+    //     if (other && !other.node.isValid){
+    //         return
+    //     }
+    //     var tag = other.node.tag
+    //     switch(tag){
+    //         case commonData.TAG.bullet:
+    //             var bulletBaseInfo = other.node.getComponent("bulletBaseInfo")
+    //             if (bulletBaseInfo && bulletBaseInfo.type == magazine.MagazineType.HARD){
+    //                 this.updateMonsterHp(other)
+    //             }
+    //             break
+    //     }
+    // },
 });

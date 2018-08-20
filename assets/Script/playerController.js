@@ -10,6 +10,7 @@
 var commonData = require("gameData")
 var magazine = require("magazine")
 var normalBulletFormConfig = require("normalBulletFormConfig")
+var hardBulletFormConfig = require("hardBulletFormConfig")
 cc.Class({
     extends: cc.Component,
 
@@ -54,6 +55,7 @@ cc.Class({
         this.node.setLocalZOrder(9998)
         this.playerBaseInfo = this.node.getComponent("playerBaseInfo")
         this.bulletIdx = this.playerBaseInfo.curBulletIdx
+        this.AudioEngine = this.node.getComponent("audioEngineController")
         this.updateBullet()
     },
     // updateGear(){
@@ -71,8 +73,8 @@ cc.Class({
             case magazine.MagazineType.NORMAL:
                 this.updateNormalBulletFormData()
                 break
-            case magazine.MagazineType.SHOT:
-                // this.bulletFormData = this.updateNormalBulletFormData()
+            case magazine.MagazineType.HARD:
+                this.updateHardBulletFormData()
                 break
         }
     },
@@ -80,6 +82,7 @@ cc.Class({
         if (commonData.curGameState == commonData.GameState.RUNNING){
             var date = new Date();
             if (date.getTime()/1000 - this.curTime > this.emitRate){
+                this.AudioEngine.play()
                 var curBullet = this.bullets[this.bulletType]
                 if (curBullet){
                     this.updateBulletResolution(this.bulletType,curBullet)
@@ -88,7 +91,7 @@ cc.Class({
             }
         }
     },
-    normalBulletResoultion(bullet){
+    normalBulletResolution(bullet){
         for (var i = 0;i < this.bulletFormData.length;i++){
             var bullet = cc.instantiate(bullet)
             var bullet_S = bullet.getComponent("normalBullet")
@@ -96,13 +99,25 @@ cc.Class({
             bullet_S.velocityY = this.bulletFormData[i].velocityY
             var rotation = this.bulletFormData[i].rotation
             if (this.bulletFormData[i].random){
-                rotation += cc.random0To1() * this.bulletFormData.random
+                var rotationRandom = cc.random0To1() * this.bulletFormData[i].random
+                rotation += rotationRandom
+                var offset_x = Math.abs(Math.tan(rotation))
+                var newVelocityX = ((bullet_S.velocityX > 0)?offset_x:-offset_x) * bullet_S.velocityY
+            //     cc.log(rotation)
+                bullet_S.velocityX = newVelocityX
             }
             bullet.setRotation(rotation)
             var parent = this.node.getParent()
             bullet.setPosition(this.node.x + this.winSize.width/2,this.node.y + this.winSize.height/2 + 45)
             parent.getParent().addChild(bullet)
         }
+    },
+    //硬弹
+    hardBulletResolution(bullet){
+        var bullet = cc.instantiate(bullet)
+        var parent = this.node.getParent()
+        bullet.setPosition(this.node.x + this.winSize.width/2,this.node.y + this.winSize.height/2 + 45)
+        parent.getParent().addChild(bullet)
     },
     //散弹
     shotBulletResolution(bullet){
@@ -124,7 +139,10 @@ cc.Class({
     updateBulletResolution(bulletType,curBullet){
         switch(bulletType){
             case magazine.MagazineType.NORMAL:
-                this.normalBulletResoultion(curBullet)
+                this.normalBulletResolution(curBullet)
+                break
+            case magazine.MagazineType.HARD:
+                this.hardBulletResolution(curBullet)
                 break
             case magazine.MagazineType.SHOT:
                 this.shotBulletResolution(curBullet)
@@ -141,6 +159,7 @@ cc.Class({
         }
     },
     updateNormalBulletFormData(){
+        cc.log(commonData.curBulletGear)
         this.bulletFormData = normalBulletFormConfig.config[commonData.curBulletGear - 1]
         switch(commonData.curBulletGear){
             case 1:
@@ -175,7 +194,41 @@ cc.Class({
                 break
         }
     },
-
+    updateHardBulletFormData(){
+        // this.bulletFormData = hardBulletFormConfig.config[commonData.curBulletGear - 1]
+        switch(commonData.curBulletGear){
+            case 1:
+                this.emitRate = 0.4
+                break
+            case 2:
+                this.emitRate = 0.395
+                break
+            case 3:
+                this.emitRate = 0.39
+                break
+            case 4:
+                this.emitRate = 0.385
+                break
+            case 5:
+                this.emitRate = 0.38
+                break
+            case 6:
+                this.emitRate = 0.375
+                break
+            case 7:
+                this.emitRate = 0.37
+                break
+            case 8:
+                this.emitRate = 0.365
+                break
+            case 9:
+                this.emitRate = 0.36
+                break
+            case 10:
+                this.emitRate = 0.35
+                break
+        }
+    },
     _initTouchEvent: function () {
         var self = this;
     // cc.log("_initTouchEvent")
@@ -238,7 +291,6 @@ cc.Class({
             case commonData.TAG.buff:
                 var buffBaseInfo = other.node.getComponent("buffBaseInfo")
                 if(this.playerBaseInfo.curBulletType == buffBaseInfo.type){
-                    cc.log(this.playerBaseInfo.maxBulletGear)
                     commonData.curBulletGear = (commonData.curBulletGear >= this.playerBaseInfo.maxBulletGear)?this.playerBaseInfo.maxBulletGear:commonData.curBulletGear + 1
                 }
                 this.playerBaseInfo.curBulletType = buffBaseInfo.type

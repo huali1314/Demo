@@ -12,6 +12,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+    	maxHp:10,
         hp:10,
         damage:1,
         velocity:10,

@@ -15,4 +15,6 @@ module.exports = {
     monsterProductionRate:0.5,
     buffProductionRate:4,
     curBulletGear:1,
+    enemyKilled:0,
+    damage:0,
 };

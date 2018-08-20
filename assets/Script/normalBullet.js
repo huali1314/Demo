@@ -27,19 +27,19 @@ cc.Class({
     },
 
     start () {
-        this.random_R = cc.random0To1() * 100 + 100
-        this.random_G = cc.random0To1() * 100 + 100
-        this.random_B = cc.random0To1() * 100 + 100
+        this.random_R = cc.random0To1() * 155 + 100
+        this.random_G = cc.random0To1() * 155 + 100
+        this.random_B = cc.random0To1() * 155 + 100
     },
 
     update (dt) {
-        this.node.x += this.velocityX
-        this.node.y += this.velocityY
+        this.node.x += this.velocityX * dt
+        this.node.y += this.velocityY * dt
         if(this.node.y > this.winSize.height || this.node.y < 0
             || this.node.x > this.winSize.width ||this.node.x < 0){
             this.node.destroy()
         }
-        var temp = dt * 20
+        var temp = dt * 40
         this.node.color = cc.color(this.random_R + temp,this.random_G + temp,this.random_B + temp)
     },
     onCollisionEnter: function (other) {

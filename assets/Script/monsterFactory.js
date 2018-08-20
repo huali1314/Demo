@@ -24,17 +24,19 @@ cc.Class({
     },
 
     update (dt) {
-        var date = new Date()
-        var second = date.getTime()/1000
-        if (second - this.curTime > this.productionRate){
-            this.curTime = second
-            var random_idx = Math.floor(cc.random0To1() * 3)
-            var random_X = cc.random0To1()*(this.half_Screen_width * 2 - 30) - this.half_Screen_width
-            var curMonster = this.monsters[random_idx]
-            var monster = cc.instantiate(curMonster)
-            monster.setPositionX(random_X)
-            monster.setPositionY(this.half_Screen_height + 30)
-            this.node.addChild(monster)
+        if (commonData.curGameState == commonData.GameState.RUNNING){
+            var date = new Date()
+            var second = date.getTime()/1000
+            if (second - this.curTime > this.productionRate){
+                this.curTime = second
+                var random_idx = Math.floor(cc.random0To1() * 3)
+                var random_X = cc.random0To1()*(this.half_Screen_width * 2 - 30) - this.half_Screen_width
+                var curMonster = this.monsters[random_idx]
+                var monster = cc.instantiate(curMonster)
+                monster.setPositionX(random_X)
+                monster.setPositionY(this.half_Screen_height + 30)
+                this.node.addChild(monster)
+            }
         }
     },
 });

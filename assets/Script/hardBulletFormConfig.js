@@ -1,0 +1,55 @@
+module.exports = {
+config:[
+        {
+            colorIndex:0,
+            scale:1,
+            extraDamage:0.5,
+        },
+        {
+            colorIndex:1,
+            scale:1.01,
+            extraDamage:1,
+        },
+
+        {
+            colorIndex:2,
+            scale:1.02,
+            extraDamage:1.5,
+        },
+        {
+            colorIndex:3,
+            scale:1.03,
+            extraDamage:2,
+        },
+        {
+            colorIndex:4,
+            scale:1.04,
+            extraDamage:3,
+        },
+        {
+            colorIndex:5,
+            scale:1.05,
+            extraDamage:4,
+        },
+        {
+            colorIndex:6,
+            scale:1.06,
+            extraDamage:5,
+        },
+        {
+            colorIndex:7,
+            scale:1.07,
+            extraDamage:6,
+        },
+        {
+            colorIndex:8,
+            scale:1.08,
+            extraDamage:6.5,
+        },
+        {
+            colorIndex:9,
+            scale:1.09,
+            extraDamage:7,
+        },
+]
+}
