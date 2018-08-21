@@ -26,6 +26,8 @@ cc.Class({
     properties: {
         velocityX:0,
         velocityY:0,
+        decay:100,
+        attackSpaceTime:200,
     },
     // LIFE-CYCLE CALLBACKS:
     onLoad () {
@@ -34,6 +36,7 @@ cc.Class({
         // cc.director.getCollisionManager().enabledDrawBoundingBox = true;
         this.winSize = cc.director.getWinSize()
         this.node.setTag(commonData.TAG.bullet)
+        this.curTime = 0
     },
     start () {
         this.bulletBaseInfo = this.node.getComponent("bulletBaseInfo")
@@ -76,14 +79,18 @@ cc.Class({
     },
 
     // onCollisionStay: function (other) {
-    //     cc.log("========onCollisionStay===")
-    //     this.velocityY = 0
-    //     // this.updateBulletStatus(other)
+    //     var date = new Date();
+    //     if (date.getTime() - this.curTime > this.attackSpaceTime){
+    //         if (other && other.isValid){
+    //             this.updateBulletStatus(other)
+    //         }
+    //         this.curTime = date.getTime()
+    //     }
     // },
 
     onCollisionExit: function (other) {
         cc.log("========onCollisionExit===")
         // this.updateBulletStatus(other)
-        this.velocityY -= 500
+        this.velocityY -= this.decay
     }
 });

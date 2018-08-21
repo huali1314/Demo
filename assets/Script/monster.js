@@ -27,6 +27,7 @@ cc.Class({
     // onLoad () {},
 
     start () {
+        this.curTime = 0
         this.node.setTag(commonData.TAG.monster)
         this.screen_sz = cc.director.getWinSize()
         this.monsterBaseInfo = this.node.getComponent("monsterBaseInfo")
@@ -80,21 +81,26 @@ cc.Class({
             this.node.destroy()
         }
     },
-    // onCollisionStay:function(other){
-    //     cc.log("onCollisionStay===========monster===")
-    //     if (other && !other.node.isValid){
-    //         return
-    //     }
-    //     var tag = other.node.tag
-    //     switch(tag){
-    //         case commonData.TAG.bullet:
-    //             var bulletBaseInfo = other.node.getComponent("bulletBaseInfo")
-    //             if (bulletBaseInfo && bulletBaseInfo.type == magazine.MagazineType.HARD){
-    //                 this.updateMonsterHp(other)
-    //             }
-    //             break
-    //     }
-    // },
+    onCollisionStay:function(other){
+        if (other && !other.node.isValid){
+            return
+        }
+        var tag = other.node.tag
+        switch(tag){
+            case commonData.TAG.bullet:
+                var bulletBaseInfo = other.node.getComponent("bulletBaseInfo")
+                if (bulletBaseInfo && bulletBaseInfo.type == magazine.MagazineType.HARD){
+                    var hardBullet = other.node.getComponent("hardBullet")
+                    var date = new Date();
+                    if (date.getTime() - this.curTime > 100){
+                        this.updateMonsterHp(other)
+                        hardBullet.updateBulletStatus(this)
+                        this.curTime = date.getTime()
+                    }
+                }
+                break
+        }
+    },
     // onCollisionExit:function(other){
     //     cc.log("onCollisionStay===========monster===")
     //     if (other && !other.node.isValid){

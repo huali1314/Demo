@@ -56,8 +56,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 100,
-      "height": 100
+      "width": 400,
+      "height": 400
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -129,8 +129,8 @@
     },
     "_size": {
       "__type__": "cc.Size",
-      "width": 100,
-      "height": 100
+      "width": 400,
+      "height": 400
     }
   },
   {
@@ -141,8 +141,8 @@
       "__id__": 1
     },
     "_enabled": true,
-    "maxHp": 10,
-    "hp": 2,
+    "maxHp": 200,
+    "hp": 200,
     "damage": 1,
     "velocity": 3
   },

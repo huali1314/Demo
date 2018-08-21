@@ -107,17 +107,17 @@ cc.Class({
     stop(){
         commonData.curGameState = commonData.GameState.STOP
         // cc.game.setFrameRate(0)
-        cc.director.pause()
+        // cc.director.pause()
     },
     pause(){
         commonData.curGameState = commonData.GameState.PAUSE
         // cc.game.setFrameRate(4)
-        cc.director.pause()
+        // cc.director.pause()
     },
     resume(){
         commonData.curGameState = commonData.GameState.RUNNING
         // cc.game.setFrameRate(60)
-        cc.director.resume()
+        // cc.director.resume()
     },
     displayDialog(){
 

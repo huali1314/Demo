@@ -139,7 +139,7 @@
     },
     "_enabled": true,
     "maxHp": 10,
-    "hp": 2,
+    "hp": 6,
     "damage": 2,
     "velocity": 6
   },
