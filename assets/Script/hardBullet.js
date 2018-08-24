@@ -11,7 +11,7 @@ var commonData = require("gameData")
 var COLOR = [
                 cc.Color.WHITE,
                 cc.Color.GRAY,
-                cc.Color.BLACK,
+                cc.Color.GRAY,
                 cc.Color.GREEN,
                 cc.Color.BLUE,
                 cc.Color.CYAN,
@@ -40,6 +40,7 @@ cc.Class({
     },
     start () {
         this.bulletBaseInfo = this.node.getComponent("bulletBaseInfo")
+        this.AudioEngine = this.node.getComponent("audioEngineController")
         this.bulletBaseInfo.hp = commonData.curBulletGear
         var childs = this.node.children
         for (var i = 0;i<childs.length;i++){
@@ -76,21 +77,26 @@ cc.Class({
     onCollisionEnter: function (other) {
         // cc.log("========onCollisionEnter===")
         this.updateBulletStatus(other)
+        this.AudioEngine.play()
     },
 
-    // onCollisionStay: function (other) {
-    //     var date = new Date();
-    //     if (date.getTime() - this.curTime > this.attackSpaceTime){
-    //         if (other && other.isValid){
-    //             this.updateBulletStatus(other)
-    //         }
-    //         this.curTime = date.getTime()
-    //     }
-    // },
+    onCollisionStay: function (other) {
+        var date = new Date();
+        if (date.getTime() - this.curTime > this.attackSpaceTime){
+            if (other && other.isValid){
+            //     this.updateBulletStatus(other)
+                this.AudioEngine.play()
+            }
+            var volume = this.AudioEngine.getVolume() - 0.11
+            this.AudioEngine.setVolume(volume)
+            this.curTime = date.getTime()
+        }
+    },
 
     onCollisionExit: function (other) {
         cc.log("========onCollisionExit===")
         // this.updateBulletStatus(other)
         this.velocityY -= this.decay
+        // this.AudioEngine.play()
     }
 });

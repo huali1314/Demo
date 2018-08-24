@@ -31,4 +31,10 @@ cc.Class({
         if (!this.audio) return;
         cc.audioEngine.resumeAll();
     },
+    getVolume:function(){
+        cc.audioEngine.getVolume()
+    },
+    setVolume:function(volume){
+        cc.audioEngine.setVolume(volume)
+    },
 });

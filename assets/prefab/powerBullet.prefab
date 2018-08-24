@@ -38,10 +38,13 @@
       },
       {
         "__id__": 14
+      },
+      {
+        "__id__": 15
       }
     ],
     "_prefab": {
-      "__id__": 15
+      "__id__": 16
     },
     "_id": "",
     "_opacity": 255,
@@ -117,8 +120,8 @@
       "width": 80,
       "height": 80
     },
-    "_rotationX": 3306.402000011786,
-    "_rotationY": 3306.402000011786,
+    "_rotationX": 1587.0599999987212,
+    "_rotationY": 1587.0599999987212,
     "_scaleX": 1,
     "_scaleY": 1,
     "_position": {
@@ -208,17 +211,17 @@
       "width": 80,
       "height": 80
     },
-    "_rotationX": 3893.597999988214,
-    "_rotationY": 3893.597999988214,
-    "_scaleX": 0.8510670000019644,
-    "_scaleY": 0.8510670000019644,
+    "_rotationX": 5345.65714285836,
+    "_rotationY": 5345.65714285836,
+    "_scaleX": 0.8841035714286476,
+    "_scaleY": 0.8841035714286476,
     "_position": {
       "__type__": "cc.Vec2",
       "x": 0,
       "y": 0
     },
-    "_skewX": 0,
-    "_skewY": 0,
+    "_skewX": 38.94624999981352,
+    "_skewY": 38.94624999981352,
     "_localZOrder": 0,
     "_globalZOrder": 0,
     "_opacityModifyRGB": false,
@@ -299,10 +302,10 @@
       "width": 80,
       "height": 80
     },
-    "_rotationX": -3893.597999988214,
-    "_rotationY": -3893.597999988214,
-    "_scaleX": 1.0266005000029468,
-    "_scaleY": 0.9489329999980356,
+    "_rotationX": -5612.940000001279,
+    "_rotationY": -5612.940000001279,
+    "_scaleX": 0.8677450000001066,
+    "_scaleY": 1.0661274999999468,
     "_position": {
       "__type__": "cc.Vec2",
       "x": 0,
@@ -377,7 +380,9 @@
     },
     "_enabled": true,
     "velocityX": 0,
-    "velocityY": 1000
+    "velocityY": 1000,
+    "decay": 100,
+    "attackSpaceTime": 200
   },
   {
     "__type__": "bcb6eVjvq9NxaSOQ30TedSn",
@@ -409,6 +414,18 @@
       }
     ],
     "playOnLoad": true
+  },
+  {
+    "__type__": "f349bZpJr5L2J/bUPuAuTlG",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "audio": {
+      "__uuid__": "8f8fc51a-81b9-48aa-841d-a38982a6220f"
+    }
   },
   {
     "__type__": "cc.PrefabInfo",
