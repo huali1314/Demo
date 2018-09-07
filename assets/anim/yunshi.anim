@@ -3,28 +3,50 @@
   "_name": "yunshi",
   "_objFlags": 0,
   "_rawFiles": null,
-  "_duration": 10,
-  "sample": 2,
+  "_duration": 0.67,
+  "sample": 30,
   "speed": 1,
   "wrapMode": 1,
   "curveData": {
     "props": {
-      "rotation": [
+      "x": [
         {
           "frame": 0,
-          "value": 45
+          "value": 197
         },
+        {
+          "frame": 0.3333333333333333,
+          "value": 399
+        },
+        {
+          "frame": 0.6666666666666666,
+          "value": 197
+        }
+      ],
+      "scale": [
         {
           "frame": 0,
-          "value": 130
+          "value": {
+            "__type__": "cc.Vec2",
+            "x": 1,
+            "y": 1
+          }
         },
         {
-          "frame": 0,
-          "value": 0
+          "frame": 0.3333333333333333,
+          "value": {
+            "__type__": "cc.Vec2",
+            "x": 0.7,
+            "y": 0.7
+          }
         },
         {
-          "frame": 10,
-          "value": 369
+          "frame": 0.6666666666666666,
+          "value": {
+            "__type__": "cc.Vec2",
+            "x": 1,
+            "y": 1
+          }
         }
       ]
     }

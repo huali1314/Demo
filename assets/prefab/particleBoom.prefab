@@ -28,9 +28,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 240,
-      "g": 231,
-      "b": 34,
+      "r": 255,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -86,42 +86,42 @@
     "_lifeVar": 0,
     "_startColor": {
       "__type__": "cc.Color",
-      "r": 219,
-      "g": 55,
-      "b": 41,
+      "r": 255,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_startColorVar": {
       "__type__": "cc.Color",
-      "r": 223,
-      "g": 159,
-      "b": 24,
+      "r": 255,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_endColor": {
       "__type__": "cc.Color",
-      "r": 228,
-      "g": 51,
-      "b": 27,
-      "a": 0
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
     },
     "_endColorVar": {
       "__type__": "cc.Color",
-      "r": 216,
-      "g": 52,
-      "b": 52,
-      "a": 0
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
     },
-    "_angle": 90,
-    "_angleVar": 20,
+    "_angle": 0,
+    "_angleVar": 0,
     "_startSize": 50,
     "_startSizeVar": 60,
     "_endSize": 0,
     "_endSizeVar": 0,
-    "_startSpin": 20,
-    "_startSpinVar": 50,
-    "_endSpin": 10,
-    "_endSpinVar": 20,
+    "_startSpin": 0,
+    "_startSpinVar": 0,
+    "_endSpin": 0,
+    "_endSpinVar": 0,
     "_sourcePos": {
       "__type__": "cc.Vec2",
       "x": 0,
@@ -150,8 +150,8 @@
     "_startRadiusVar": 1.5,
     "_endRadius": 0.8,
     "_endRadiusVar": 1.2,
-    "_rotatePerS": -3.4,
-    "_rotatePerSVar": 0,
+    "_rotatePerS": 0,
+    "_rotatePerSVar": -2.3,
     "_N$preview": true
   },
   {

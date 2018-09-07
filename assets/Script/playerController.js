@@ -198,34 +198,34 @@ cc.Class({
         // this.bulletFormData = hardBulletFormConfig.config[commonData.curBulletGear - 1]
         switch(commonData.curBulletGear){
             case 1:
-                this.emitRate = 0.4
+                this.emitRate = 1
                 break
             case 2:
-                this.emitRate = 0.395
+                this.emitRate = 0.95
                 break
             case 3:
-                this.emitRate = 0.39
+                this.emitRate = 0.9
                 break
             case 4:
-                this.emitRate = 0.385
+                this.emitRate = 0.85
                 break
             case 5:
-                this.emitRate = 0.38
+                this.emitRate = 0.82
                 break
             case 6:
-                this.emitRate = 0.375
+                this.emitRate = 0.79
                 break
             case 7:
-                this.emitRate = 0.37
+                this.emitRate = 0.75
                 break
             case 8:
-                this.emitRate = 0.365
+                this.emitRate = 0.72
                 break
             case 9:
-                this.emitRate = 0.36
+                this.emitRate = 0.67
                 break
             case 10:
-                this.emitRate = 0.35
+                this.emitRate = 0.62
                 break
         }
     },

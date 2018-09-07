@@ -1,0 +1,49 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "fireboom",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 0.3,
+  "sample": 30,
+  "speed": 1,
+  "wrapMode": 2,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "aa8a2390-e139-4da8-886e-b0cb51134305"
+            }
+          },
+          {
+            "frame": 0.06666666666666667,
+            "value": {
+              "__uuid__": "f2b9f26c-6c52-44fc-ba38-2169db7d5b28"
+            }
+          },
+          {
+            "frame": 0.13333333333333333,
+            "value": {
+              "__uuid__": "19baef5d-24fe-4b59-8890-49dd7af6fef3"
+            }
+          },
+          {
+            "frame": 0.2,
+            "value": {
+              "__uuid__": "d8db1fe9-b47d-4292-8df7-9c2bca0cae6e"
+            }
+          },
+          {
+            "frame": 0.26666666666666666,
+            "value": {
+              "__uuid__": "ba27a083-649a-4985-8465-7e00a4131c71"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

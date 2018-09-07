@@ -50,8 +50,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 60,
-      "height": 60
+      "width": 20,
+      "height": 20
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -107,9 +107,9 @@
     "_offset": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 30
+      "y": 10
     },
-    "_radius": 30
+    "_radius": 10
   },
   {
     "__type__": "27c23dYfqtAc4bVSCMwlfS/",
@@ -120,7 +120,7 @@
     },
     "_enabled": true,
     "velocityX": 0,
-    "velocityY": 30
+    "velocityY": 20
   },
   {
     "__type__": "bcb6eVjvq9NxaSOQ30TedSn",
@@ -130,6 +130,8 @@
       "__id__": 1
     },
     "_enabled": true,
+    "maxHp": 1,
+    "hp": 1,
     "damage": 10,
     "type": 1
   },

@@ -87,8 +87,8 @@ cc.Class({
             //     this.updateBulletStatus(other)
                 this.AudioEngine.play()
             }
-            var volume = this.AudioEngine.getVolume() - 0.11
-            this.AudioEngine.setVolume(volume)
+            // var volume = this.AudioEngine.getVolume() - 0.11
+            // this.AudioEngine.setVolume(volume)
             this.curTime = date.getTime()
         }
     },
